@@ -1,0 +1,18 @@
+*Load auto data
+sysuse auto, clear
+
+*Estimate a OLS regression of price using mpg, weight and length as explanatory variables
+regress price mpg weight length
+
+*Tabulate foreign and repair record
+tab rep78
+tab foreign
+
+*Naive inclusion of categorical variables
+regress price mpg weight length foreign rep78
+
+*Using Stata's expansion capability with the i. prefix
+regress price mpg weight length i.foreign i.rep78
+
+*Using Stata's expansion capability with the i. prefix and setting foreign's base category to 5
+regress price mpg weight length i.foreign ib(5).rep78
